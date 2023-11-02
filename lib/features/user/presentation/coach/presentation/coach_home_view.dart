@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 
-import 'features/authentication/presentation/signin_view.dart';
+import '../../../../authentication/presentation/signin_view.dart';
 import 'new_workout.dart';
 
 /// High level display of the settings page.
@@ -64,7 +64,7 @@ class CoachHomeView extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SigninView()),
+                      MaterialPageRoute(builder: (context) => SignInView()),
                     );
                   },
                   child: Text('New Survey',

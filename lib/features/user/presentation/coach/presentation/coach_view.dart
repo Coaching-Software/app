@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import 'coach_home_view.dart';
 import 'coach_settings_view.dart';
 import 'history_view.dart';

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "user-001",
+    "role": "coach",
+    "name": "Test Coach Name",
+    "email": "jlisoway@hawaii.edu",
+    "workoutIDs": []
+  },
+  {
+    "id": "user-002",
+    "role": "athlete",
+    "name": "Test Athlete Name 1",
+    "email": "jlisoway@hawaii.edu",
+    "workoutIDs": [
+      "workout-001",
+      "workout-002",
+      "workout-003"
+    ]
+  },
+  {
+    "id": "user-003",
+    "role": "athlete",
+    "name": "Test Athlete Name 2",
+    "email": "bob@gmail.com",
+    "workoutIDs": [
+      "workout-002"
+    ]
+  },
+  {
+    "id": "user-004",
+    "role": "athlete",
+    "email": "bob3@gmail.com",
+    "name": "Test Athlete Name 3",
+    "workoutIDs": [
+      "workout-002"
+    ]
+  }
+]

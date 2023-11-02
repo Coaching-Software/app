@@ -1,0 +1,23 @@
+[
+  {
+    "id": "workout-001",
+    "name": "Aerobic 1",
+    "athletes": ["user-002"],
+    "date": "Oct 31, 2023",
+    "description": "Warm Up 300 Swim, Main Set: 15x100 @ 1:30 choice"
+  },
+  {
+    "id": "workout-002",
+    "name": "Sprint 1",
+    "athletes": ["user-002"],
+    "date": "Nov 2, 2023",
+    "description": "Warm Up 300 Swim, Main Set: 10x25s @ 1:00 descend to MAX"
+  },
+  {
+    "id": "workout-003",
+    "name": "Kick 1",
+    "athletes": ["user-002"],
+    "date": "Nov 1, 2023",
+    "description": "Warm Up 300 Swim/Kick, Main Set: 15x100 @ 2:00 choice kick"
+  }
+]

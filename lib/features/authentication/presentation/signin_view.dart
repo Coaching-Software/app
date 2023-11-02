@@ -1,88 +1,124 @@
+import 'package:coaching_app/features/authentication/presentation/select_role_view.dart';
+import 'package:coaching_app/features/user/presentation/athlete/presentation/athlete_view.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' hide ForgotPasswordView;
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/// Presents the page containing fields to enter a username and password, plus buttons.
-class SigninView extends StatefulWidget {
-  const SigninView({Key? key}) : super(key: key);
+import '../../../agc_error.dart';
+import '../../../agc_loading.dart';
+import '../../all_data_provider.dart';
+import '../../user/domain/user.dart';
+import '../../user/domain/user_collection.dart';
+import '../../user/presentation/coach/presentation/coach_view.dart';
+import '../../user/presentation/edit_user_controller.dart';
+import 'decorations.dart';
+import 'forgot_password_view.dart';
+import 'verify_email_view.dart';
 
-  static const routeName = '/signin';
+/// Builds the page containing fields to enter a username and password, plus buttons.
+class SignInView extends ConsumerWidget {
+  const SignInView({Key? key}) : super(key: key);
 
+  static const routeName = '/';
 
   @override
-  State<SigninView> createState() => _SigninViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<AllData> asyncAllData = ref.watch(allDataProvider);
+    return asyncAllData.when(
+        data: (allData) => _build(
+            context: context,
+            users: allData.users,
+            ref: ref),
+        loading: () => const AGCLoading(),
+        error: (error, st) => AGCError(error.toString(), st.toString()));
+  }
 
-class _SigninViewState extends State<SigninView> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  Widget _build({
+    required BuildContext context,
+    required List<User> users,
+    required WidgetRef ref,
+  }) {
+    final userCollection = UserCollection(users);
+    return SignInScreen(
+      actions: [
+        ForgotPasswordAction((context, email) {
+          Navigator.pushNamed(
+            context,
+            ForgotPasswordView.routeName,
+            arguments: {'email': email},
+          );
+        }),
+        AuthStateChangeAction<SignedIn>((context, state) {
+         User user = userCollection.getUser(state.user!.email!);
+          if (!state.user!.emailVerified) {
+            Navigator.pushNamed(context, VerifyEmailView.routeName);
+          } else {
+            if (user.role == 'null') {
+              Navigator.pushReplacementNamed(context, SelectRoleView.routeName);
+            } else if (user.role == "coach") {
+              Navigator.pushReplacementNamed(context, CoachView.routeName);
+            } else {
+              Navigator.pushReplacementNamed(context, AthleteView.routeName);
+            }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                const SizedBox(height: 16.0),
-                Text(
-                  "Welcome to",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 16.0),
-                Image.asset('assets/images/mavs_logo.png', height: 200, width: 200,),
-                const SizedBox(height: 16.0),
-                Text(
-                  "Remote Coaching",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+          }
+        }),
+        AuthStateChangeAction<UserCreated>((context, state) {
+          if (!state.credential.user!.emailVerified) {
+            String email = state.credential.user?.email ?? '';
+            int numUsers = userCollection.size();
+            String id = 'user-${(numUsers + 1).toString().padLeft(3, '0')}';
+            User newUser = User(
+                id: id,
+                role: 'null',
+                name: email,
+                email: email,
+                workoutIDs: []);
+            ref.read(editUserControllerProvider.notifier).updateUser(
+              user: newUser,
+              onSuccess: () {},
+            );
+            Navigator.pushNamed(context, VerifyEmailView.routeName);
+          } else {
+            Navigator.pushReplacementNamed(context, SelectRoleView.routeName);
+          }
+        }),
+        AuthStateChangeAction<CredentialLinked>((context, state) {
+          if (!state.user.emailVerified) {
+            Navigator.pushNamed(context, VerifyEmailView.routeName);
+          } else {
+            Navigator.pushReplacementNamed(context, SelectRoleView.routeName);
+          }
+        }),
+      ],
+      styles: const {
+        EmailFormStyle(signInButtonVariant: ButtonVariant.filled),
+      },
+      headerBuilder: headerImage('assets/images/mavs_logo.png'),
+      sideBuilder: sideImage('assets/images/mavs_logo.png'),
+      subtitleBuilder: (context, action) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Text(
+            action == AuthAction.signIn
+                ? 'Welcome to Welcome to Mavs Remote Coaching'
+                : 'Welcome to Welcome to Mavs Remote Coaching! Please create an account.',
+          ),
+        );
+      },
+      footerBuilder: (context, action) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Text(
+              action == AuthAction.signIn
+                  ? 'By signing in, you agree to our terms and conditions.'
+                  : 'By registering, you agree to our terms and conditions.',
+              style: const TextStyle(color: Colors.white),
             ),
-            const SizedBox(height: 120.0),
-            // [Name]
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-              ),
-            ),
-            const SizedBox(height: 12.0),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text('Forgot Password?'),
-              ),
-            ),
-            const SizedBox(height: 12.0),
-            ElevatedButton(
-                onPressed: () {
-                  // Eventually: pushReplacementNamed
-                  Navigator.pushReplacementNamed(context, '/coachView');
-                },
-                child: const Text('Sign in')),
-            const SizedBox(height: 12.0),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text("Don't have an account? "),
-              TextButton(
-                child: const Text('Sign up'),
-                onPressed: () {
-                  // Eventually: pushReplacementNamed
-                  Navigator.pushReplacementNamed(context, '/signup');
-                },
-              )
-            ]),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

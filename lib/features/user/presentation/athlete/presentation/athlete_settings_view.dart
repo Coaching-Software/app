@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 
 
-import 'features/authentication/presentation/signin_view.dart';
+import '../../../../authentication/presentation/signin_view.dart';
 
 /// High level display of the settings page.
-class CoachSettingsView extends StatelessWidget {
-  const CoachSettingsView({
+class AthleteSettingsView extends StatelessWidget {
+  const AthleteSettingsView({
     super.key,
   });
 
-  static const routeName = '/coachSettings';
+  static const routeName = '/athleteSettings';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CoachSettingsView extends StatelessWidget {
           TextField(
             controller: nameController,
             decoration: const InputDecoration(
-              labelText: 'Change Name',
+              labelText: 'Change Athlete Name',
               hintText: 'Enter New Name',
             ),
           ),
@@ -43,7 +43,7 @@ class CoachSettingsView extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SigninView()),
+                      MaterialPageRoute(builder: (context) => SignInView()),
                     );
                   },
                   child: const Text('Logout',
