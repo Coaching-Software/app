@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../agc_error.dart';
 import '../../../agc_loading.dart';
 import '../../all_data_provider.dart';
+import '../../page_not_found_view.dart';
 import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
 import '../../user/presentation/coach/presentation/coach_view.dart';
@@ -57,8 +58,10 @@ class SignInView extends ConsumerWidget {
               Navigator.pushReplacementNamed(context, SelectRoleView.routeName);
             } else if (user.role == "coach") {
               Navigator.pushReplacementNamed(context, CoachView.routeName);
-            } else {
+            } else if (user.role == "athlete") {
               Navigator.pushReplacementNamed(context, AthleteView.routeName);
+            } else {
+              Navigator.pushReplacementNamed(context, PageNotFoundView.routeName);
             }
 
           }
