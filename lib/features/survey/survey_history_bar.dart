@@ -1,21 +1,20 @@
+import 'package:coaching_app/features/survey/survey_history_item_page.dart';
 import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../agc_error.dart';
 import '../../../../agc_loading.dart';
-import '../../all_data_provider.dart';
-import '../../survey/survey_history_item_page.dart';
-import '../domain/workouts_collection.dart';
+import '../all_data_provider.dart';
 
 /// Displays basic user info in a bar given a UserID
-class WorkoutBar extends ConsumerWidget {
-  const WorkoutBar({
+class SurveyBar extends ConsumerWidget {
+  const SurveyBar({
     super.key,
-    required this.workoutID,
+    required this.surveyID,
   });
 
-  final String workoutID;
+  final String surveyID;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,8 +31,6 @@ class WorkoutBar extends ConsumerWidget {
   Widget _build(
       {required BuildContext context,
         required List<Workout> workouts}) {
-    final workoutCollection = WorkoutCollection(workouts);
-    final Workout workout = workoutCollection.getWorkout(workoutID);
 
     return Column(
       children: [
@@ -50,28 +47,22 @@ class WorkoutBar extends ConsumerWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => SurveyItemPage(
-                    surveyID: workoutID,
+                    surveyID: surveyID,
                   )),
             ),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(width: 15.0),
-                    Text(workout.name,
-                        style: const TextStyle(
+                    SizedBox(width: 15.0),
+                    Text("Survey date",
+                        style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20)),
-                    const SizedBox(width: 30.0),
-                    Text(workout.date,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20)),
-                    const SizedBox(width: 30.0),
+                            fontSize: 25)),
+                    SizedBox(width: 30.0),
                   ],
                 ),
               ],

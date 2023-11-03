@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../survey/survey_history.dart';
 import '../../../../workout/presentation/workout_history.dart';
 
 
@@ -18,22 +19,12 @@ class HistoryView extends StatefulWidget {
       'body': const WorkoutHistory(),
     },
     1: {
-      'body': const SurveyHistoryView(),
+      'body': const SurveyHistory(),
     },
   };
 
   @override
   State<HistoryView> createState() => _HistoryViewState();
-}
-
-
-class SurveyHistoryView extends StatelessWidget{
-  const SurveyHistoryView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Surveys");
-  }
 }
 
 class _HistoryViewState extends State<HistoryView> {

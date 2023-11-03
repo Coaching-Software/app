@@ -2,6 +2,8 @@ import 'package:coaching_app/features/authentication/presentation/forgot_passwor
 import 'package:coaching_app/features/authentication/presentation/select_role_view.dart';
 import 'package:coaching_app/features/authentication/presentation/verify_email_view.dart';
 import 'package:coaching_app/features/survey/send_survey.dart';
+import 'package:coaching_app/features/survey/survey_history.dart';
+import 'package:coaching_app/features/survey/survey_history_item_page.dart';
 import 'package:coaching_app/features/workout/presentation/workout_history.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +77,10 @@ class MyApp extends StatelessWidget {
                 return WorkoutItemPage(workoutID: '',);
               case SendSurvey.routeName:
                 return SendSurvey();
+              case SurveyHistory.routeName:
+                return SurveyHistory();
+              case SurveyItemPage.routeName:
+                return SurveyItemPage(surveyID: '',);
               default:
                 return PageNotFoundView();
             }

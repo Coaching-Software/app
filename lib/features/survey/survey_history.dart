@@ -1,28 +1,28 @@
+import 'package:coaching_app/features/survey/survey_history_bar.dart';
 import 'package:coaching_app/features/workout/domain/workout.dart';
-import 'package:coaching_app/features/workout/presentation/workout_history_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../agc_error.dart';
 import '../../../../agc_loading.dart';
-import '../../all_data_provider.dart';
+import '../all_data_provider.dart';
 
 /// Displays a list of Students in a class.
-class WorkoutHistory extends ConsumerWidget {
-  const WorkoutHistory({
+class SurveyHistory extends ConsumerWidget {
+  const SurveyHistory({
     super.key,
   });
 
-  static const routeName = '/WorkoutHistory';
+  static const routeName = '/SurveyHistory';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<AllData> asyncAllData = ref.watch(allDataProvider);
     return asyncAllData.when(
         data: (allData) => _build(
-              context: context,
-              workouts: allData.workouts,
-            ),
+          context: context,
+          workouts: allData.workouts,
+        ),
         loading: () => const AGCLoading(),
         error: (error, st) => AGCError(error.toString(), st.toString()));
   }
@@ -43,7 +43,7 @@ class WorkoutHistory extends ConsumerWidget {
                     Column(
                       children: [
                         ...workouts
-                            .map((workout) => WorkoutBar(workoutID: workout.id))
+                            .map((workout) => SurveyBar(surveyID: workout.id))
                       ],
                     ),
                   ],
