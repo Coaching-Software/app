@@ -1,12 +1,12 @@
 import 'package:coaching_app/features/workout/domain/workout.dart';
-import 'package:coaching_app/features/workout/workout_history_item_page.dart';
+import 'package:coaching_app/features/workout/presentation/workout_history_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../agc_error.dart';
-import '../../../agc_loading.dart';
-import '../all_data_provider.dart';
-import 'domain/workouts_collection.dart';
+import '../../../../agc_error.dart';
+import '../../../../agc_loading.dart';
+import '../../all_data_provider.dart';
+import '../domain/workouts_collection.dart';
 
 /// Displays basic user info in a bar given a UserID
 class WorkoutBar extends ConsumerWidget {

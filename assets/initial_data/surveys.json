@@ -1,0 +1,12 @@
+[
+  {
+    "id": "survey-001",
+    "date": "Oct 31, 2023",
+    "avgFatigue": "4",
+    "avgSleep": "5",
+    "avgDOMS": "3",
+    "avgDifficulty": "7",
+    "avgHR": "49",
+    "individualResponses": ["response-001","response-002","response-003"]
+  }
+]

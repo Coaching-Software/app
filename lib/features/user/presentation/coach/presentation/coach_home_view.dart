@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 
 import '../../../../authentication/presentation/signin_view.dart';
-import '../../../../workout/new_workout.dart';
+import '../../../../workout/presentation/new_workout.dart';
 
 /// High level display of the settings page.
 class CoachHomeView extends StatelessWidget {

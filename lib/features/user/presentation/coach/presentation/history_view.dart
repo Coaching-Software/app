@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../workout/workout_history.dart';
+import '../../../../workout/presentation/workout_history.dart';
 
 
 /// Middle-level Layout for the profile view, shows either classes or groups for currently signin user
