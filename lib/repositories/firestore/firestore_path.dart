@@ -3,9 +3,6 @@ class FirestorePath {
   static String user(String userID) => 'users/$userID';
   static String users() => 'users';
 
-  static String course(String courseID) => 'users/$courseID';
-  static String courses() => 'courses';
-
-  static String group(String groupID) => 'groups/$groupID';
-  static String groups() => 'groups';
+  static String workout(String workoutID) => 'workouts/$workoutID';
+  static String workouts() => 'workouts';
 }

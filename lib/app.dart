@@ -1,6 +1,8 @@
 import 'package:coaching_app/features/authentication/presentation/forgot_password_view.dart';
 import 'package:coaching_app/features/authentication/presentation/select_role_view.dart';
 import 'package:coaching_app/features/authentication/presentation/verify_email_view.dart';
+import 'package:coaching_app/features/survey/send_survey.dart';
+import 'package:coaching_app/features/workout/workout_history.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,8 @@ import 'features/authentication/presentation/athlete_signup.dart';
 import 'features/authentication/presentation/coach_signup.dart';
 import 'features/page_not_found_view.dart';
 import 'features/user/presentation/coach/presentation/history_view.dart';
-import 'features/user/presentation/coach/presentation/new_workout.dart';
+import 'features/workout/new_workout.dart';
+import 'features/workout/workout_history_item_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -66,6 +69,12 @@ class MyApp extends StatelessWidget {
                 return VerifyEmailView();
               case SelectRoleView.routeName:
                 return SelectRoleView();
+              case WorkoutHistory.routeName:
+                return WorkoutHistory();
+              case WorkoutItemPage.routeName:
+                return WorkoutItemPage(workoutID: '',);
+              case SendSurvey.routeName:
+                return SendSurvey();
               default:
                 return PageNotFoundView();
             }

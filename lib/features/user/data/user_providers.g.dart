@@ -20,7 +20,7 @@ final userDatabaseProvider = AutoDisposeProvider<UserDatabase>.internal(
 );
 
 typedef UserDatabaseRef = AutoDisposeProviderRef<UserDatabase>;
-String _$currentUserEmailHash() => r'ebe2437f6972ee97697eb35d2bdd8970c77871da';
+String _$currentUserEmailHash() => r'59fbb1112566bb04d81270e8edb0f7087d327114';
 
 /// See also [currentUserEmail].
 @ProviderFor(currentUserEmail)

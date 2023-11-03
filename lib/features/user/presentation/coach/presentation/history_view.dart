@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../workout/workout_history.dart';
+
 
 /// Middle-level Layout for the profile view, shows either classes or groups for currently signin user
 class HistoryView extends StatefulWidget {
@@ -13,7 +15,7 @@ class HistoryView extends StatefulWidget {
   // need to be moved into the state widget.
   final Map pages = {
     0: {
-      'body': const WorkoutHistoryView(),
+      'body': const WorkoutHistory(),
     },
     1: {
       'body': const SurveyHistoryView(),
@@ -24,14 +26,6 @@ class HistoryView extends StatefulWidget {
   State<HistoryView> createState() => _HistoryViewState();
 }
 
-class WorkoutHistoryView extends StatelessWidget{
-  const WorkoutHistoryView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Workouts");
-  }
-}
 
 class SurveyHistoryView extends StatelessWidget{
   const SurveyHistoryView({super.key});
