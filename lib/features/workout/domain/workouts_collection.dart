@@ -8,4 +8,12 @@ class WorkoutCollection {
   Workout getWorkout(String workoutID) {
     return _workouts.firstWhere((data) => data.id == workoutID);
   }
+
+  List<Workout> getWorkouts(List<String> workoutIDs) {
+    List<Workout> workouts = [];
+    for (var workoutID in workoutIDs){
+      workouts.add(getWorkout(workoutID));
+    }
+    return workouts;
+  }
 }

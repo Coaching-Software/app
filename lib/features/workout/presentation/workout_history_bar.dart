@@ -1,4 +1,5 @@
 import 'package:coaching_app/features/workout/domain/workout.dart';
+import 'package:coaching_app/features/workout/presentation/workout_history_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -49,8 +50,8 @@ class WorkoutBar extends ConsumerWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => SurveyItemPage(
-                    surveyID: workoutID,
+                  builder: (context) => WorkoutItemPage(
+                    workoutID: workoutID,
                   )),
             ),
             child: Column(

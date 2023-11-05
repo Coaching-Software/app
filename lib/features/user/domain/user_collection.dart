@@ -1,3 +1,5 @@
+import 'package:coaching_app/features/workout/domain/workout.dart';
+
 import 'user.dart';
 
 /// Encapsulates operations on the list of [User] returned from Firestore.
@@ -29,5 +31,9 @@ class UserCollection{
 
   int size() {
     return _users.length;
+  }
+
+  List<String> getWorkoutIDs(String email) {
+    return _users.firstWhere((userData) => userData.email == email).workoutIDs;
   }
 }

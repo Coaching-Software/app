@@ -1,9 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../data/workout_providers.dart';
-import '../data/workout_database.dart';
-import '../domain/workout.dart';
 
 part 'edit_workout_controller.g.dart';
 
