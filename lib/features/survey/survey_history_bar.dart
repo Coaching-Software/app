@@ -36,8 +36,6 @@ class SurveyBar extends ConsumerWidget {
       children: [
         Container(
           alignment: Alignment.center,
-          height: 100,
-          width: 375,
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColorDark,
             borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -54,7 +52,7 @@ class SurveyBar extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(width: 15.0),
                     Text("Survey date",
@@ -62,7 +60,6 @@ class SurveyBar extends ConsumerWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 25)),
-                    SizedBox(width: 30.0),
                   ],
                 ),
               ],

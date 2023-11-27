@@ -1,7 +1,9 @@
 import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:coaching_app/features/workout/presentation/workout_history_bar.dart';
+import 'package:coaching_app/features/workout/presentation/workout_history_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../agc_error.dart';
 import '../../../../agc_loading.dart';
@@ -29,25 +31,39 @@ class WorkoutHistory extends ConsumerWidget {
 
   Widget _build(
       {required BuildContext context, required List<Workout> workouts}) {
+
+    List<DateTime> dates = [];
+    List<Workout> sortedWorkouts = [];
+    DateFormat format = DateFormat("MMM dd, yyyy");
+    List<String> sortedDates = [];
+    for(Workout workout in workouts){
+      dates.add(format.parse(workout.date));
+    }
+    dates.sort((a,b) => b.compareTo(a));
+    for(DateTime date in dates){
+      sortedDates.add(DateFormat('MMM d, yyyy').format(date));
+    }
+    for(String date in sortedDates){
+      sortedWorkouts.add(workouts.firstWhere((workout) => workout.date == date));
+    }
+
     return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Column(
+          const SizedBox(height: 20.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 20.0),
-              SingleChildScrollView(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        ...workouts
-                            .map((workout) => WorkoutBar(workoutID: workout.id))
-                      ],
-                    ),
-                  ],
-                ),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                          ...sortedWorkouts
+                              .map((workout) => WorkoutBar(workoutID: workout.id))
+                        ],
+                      ),
+                  ),
               ),
             ],
           ),

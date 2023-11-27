@@ -32,26 +32,27 @@ class CoachSettingsView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                alignment: Alignment.center,
-                height: 55,
-                width: 375,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
-                ),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignInView()),
-                    );
-                  },
-                  child: const Text('Logout',
-                      style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30)),
+              Flexible(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInView()),
+                      );
+                    },
+                    child: const Text('Logout',
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30)),
+                  ),
                 ),
               ),
             ],

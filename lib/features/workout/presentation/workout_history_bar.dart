@@ -37,52 +37,48 @@ class WorkoutBar extends ConsumerWidget {
     final Workout workout = workoutCollection.getWorkout(workoutID);
 
     return Column(
-      children: [
-        Container(
-          alignment: Alignment.center,
-          height: 100,
-          width: 375,
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColorDark,
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-          ),
-          child: MaterialButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => WorkoutItemPage(
-                    workoutID: workoutID,
-                  )),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColorDark,
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
+              ),
+              child: MaterialButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => WorkoutItemPage(
+                        workoutID: workoutID,
+                      ),
+                  ),
+                ),
+                child:
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(width: 15.0),
-                    Text(workout.name,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20)),
-                    const SizedBox(width: 30.0),
-                    Text(workout.date,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20)),
-                    const SizedBox(width: 30.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(workout.name,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18)),
+                        Text(workout.date,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18)),
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-      ],
+            const SizedBox(height: 20.0),
+          ],
+
     );
   }
 }

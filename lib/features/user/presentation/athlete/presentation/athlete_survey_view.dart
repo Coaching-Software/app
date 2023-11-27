@@ -95,23 +95,25 @@ class AthleteSurveyView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  height: 45,
-                  width: 375,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorDark,
-                    borderRadius: const BorderRadius.all(Radius.circular(12)),
-                  ),
-                  child: MaterialButton(
-                    onPressed: () {
-                      /// TODO: add survey to databases, update averages?
-                    },
-                    child: const Text('Submit',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30)),
+                Flexible(
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 45,
+                    width: 375,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorDark,
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    ),
+                    child: MaterialButton(
+                      onPressed: () {
+                        /// TODO: add survey to databases, update averages?
+                      },
+                      child: const Text('Submit',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30)),
+                    ),
                   ),
                 ),
               ],

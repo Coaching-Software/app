@@ -30,23 +30,20 @@ class SurveyHistory extends ConsumerWidget {
   Widget _build(
       {required BuildContext context, required List<Workout> workouts}) {
     return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Column(
+          const SizedBox(height: 20.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 20.0),
-              SingleChildScrollView(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        ...workouts
-                            .map((workout) => SurveyBar(surveyID: workout.id))
-                      ],
-                    ),
-                  ],
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...workouts
+                          .map((workout) => SurveyBar(surveyID: workout.id))
+                    ],
+                  ),
                 ),
               ),
             ],

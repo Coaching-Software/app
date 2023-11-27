@@ -1,5 +1,7 @@
 import 'package:coaching_app/features/workout/domain/workout.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../presentation/edit_user_controller.dart';
 import 'user.dart';
 
 /// Encapsulates operations on the list of [User] returned from Firestore.
@@ -35,5 +37,41 @@ class UserCollection{
 
   List<String> getWorkoutIDs(String email) {
     return _users.firstWhere((userData) => userData.email == email).workoutIDs;
+  }
+
+  List<String> getAllAthleteIDs() {
+    List<String> ids = [];
+    for(User user in _users){
+      if(user.role == "athlete"){
+        ids.add(user.id);
+      }
+    }
+    return ids;
+  }
+
+  void addWorkout(String workoutID, WidgetRef ref) {
+    for(User user in _users){
+      if(user.role == "athlete"){
+        List<String> newWorkoutIDs = [];
+        if (user.workoutIDs!= Null){
+          for (var workoutID in user.workoutIDs!){
+            newWorkoutIDs.add(workoutID);
+          }
+        }
+        newWorkoutIDs.add(workoutID);
+        User updatedUser = User(
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          workoutIDs: newWorkoutIDs,
+        );
+        ref.read(editUserControllerProvider.notifier).updateUser(
+          user: updatedUser,
+          onSuccess: () {
+          },
+        );
+      }
+    }
   }
 }

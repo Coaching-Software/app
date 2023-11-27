@@ -5,10 +5,14 @@ import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:coaching_app/features/workout/presentation/workout_history_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../workout/presentation/edit_workout_controller.dart';
+import '../../../presentation/edit_user_controller.dart';
+
 
 import '../../../../../agc_error.dart';
 import '../../../../../agc_loading.dart';
 import '../../../../all_data_provider.dart';
+import '../../../../global_snackbar.dart';
 import '../../../../workout/domain/workouts_collection.dart';
 
 /// Displays basic user info in a bar given a UserID
@@ -29,6 +33,7 @@ class CurrentWorkoutBar extends ConsumerWidget {
           workouts: allData.workouts,
           users: allData.users,
           currentUserEmail: allData.currentUserEmail,
+          ref: ref,
         ),
         loading: () => const AGCLoading(),
         error: (error, st) => AGCError(error.toString(), st.toString()));
@@ -36,7 +41,7 @@ class CurrentWorkoutBar extends ConsumerWidget {
 
   Widget _build(
       {required BuildContext context,
-        required List<Workout> workouts, required List<User> users, required String currentUserEmail}) {
+        required List<Workout> workouts, required List<User> users, required String currentUserEmail, required WidgetRef ref}) {
     final workoutCollection = WorkoutCollection(workouts);
     final Workout workout = workoutCollection.getWorkout(workoutID);
     final userCollection = UserCollection(users);
@@ -46,7 +51,47 @@ class CurrentWorkoutBar extends ConsumerWidget {
     return Dismissible(
       key: Key(workoutID),
       onDismissed: (direction) {
-        /// TODO: edit user DB (remove workout from user workouts) and workout DB (remove user from workout)
+         List<String> updatedWorkoutIDs = [];
+          for (var aWorkoutID in currentUser.workoutIDs!){
+            if(aWorkoutID != workoutID){
+              updatedWorkoutIDs.add(aWorkoutID);
+            }
+          }
+          User updatedUser = User(
+            id: currentUser.id,
+            name: currentUser.name,
+            role: currentUser.role,
+            email: currentUser.email,
+            workoutIDs: updatedWorkoutIDs,
+          );
+
+          List<String> newAthletes = [];
+
+         for (var athleteID in workout.athletes!){
+           if(athleteID != currentUser.id){
+             newAthletes.add(athleteID);
+           }
+         }
+         Workout updatedWorkout = Workout(
+           id: workout.id,
+           name: workout.name,
+           description: workout.description,
+           athletes: newAthletes,
+           date: workout.date,
+         );
+
+         ref.read(editWorkoutControllerProvider.notifier).updateWorkout(
+           workout: updatedWorkout,
+           onSuccess: () {
+           },
+         );
+
+          ref.read(editUserControllerProvider.notifier).updateUser(
+            user: updatedUser,
+            onSuccess: () {
+              GlobalSnackBar.show('Deleted Workout!');
+            },
+          );
       },
       child: Column(
         children: [
@@ -72,19 +117,19 @@ class CurrentWorkoutBar extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(width: 15.0),
+                      const SizedBox(width: 5.0),
                       Text(workout.name,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20)),
-                      const SizedBox(width: 30.0),
+                      const SizedBox(width: 10.0),
                       Text(workout.date,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20)),
-                      const SizedBox(width: 30.0),
+                      const SizedBox(width: 5.0),
                     ],
                   ),
                 ],

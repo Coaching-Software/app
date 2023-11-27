@@ -25,26 +25,26 @@ class CoachHomeView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                alignment: Alignment.center,
-                height: 55,
-                width: 375,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
-                ),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => NewWorkout()),
-                    );
-                  },
-                  child: Text('New Workout',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30)),
+              Flexible(
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NewWorkout()),
+                      );
+                    },
+                    child: Text('New Workout',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30)),
+                  ),
                 ),
               ),
             ],
@@ -53,26 +53,26 @@ class CoachHomeView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                alignment: Alignment.center,
-                height: 55,
-                width: 375,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
-                ),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SendSurvey()),
-                    );
-                  },
-                  child: Text('New Survey',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30)),
+              Flexible(
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SendSurvey()),
+                      );
+                    },
+                    child: Text('New Survey',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30)),
+                  ),
                 ),
               ),
             ],

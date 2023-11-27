@@ -3,6 +3,7 @@ import 'package:coaching_app/features/user/domain/user.dart';
 import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../agc_error.dart';
 import '../../../../../agc_loading.dart';
@@ -41,6 +42,21 @@ class CurrentWorkoutsView extends ConsumerWidget {
     List<String> currentUserWorkoutIDs = userCollection.getWorkoutIDs(currentUserEmail);
     List<Workout> currentUserWorkouts = workoutCollection.getWorkouts(currentUserWorkoutIDs);
 
+    List<DateTime> dates = [];
+    List<Workout> sortedWorkouts = [];
+    DateFormat format = DateFormat("MMM dd, yyyy");
+    List<String> sortedDates = [];
+    for(Workout workout in currentUserWorkouts){
+      dates.add(format.parse(workout.date));
+    }
+    dates.sort((a,b) => b.compareTo(a));
+    for(DateTime date in dates){
+      sortedDates.add(DateFormat('MMM d, yyyy').format(date));
+    }
+    for(String date in sortedDates){
+      sortedWorkouts.add(workouts.firstWhere((workout) => workout.date == date));
+    }
+
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -55,11 +71,13 @@ class CurrentWorkoutsView extends ConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                ...currentUserWorkouts
-                    .map((workout) => CurrentWorkoutBar(workout: workout, workoutID: workout.id))
-              ],
+            Flexible(
+              child: Column(
+                children: [
+                  ...sortedWorkouts
+                      .map((workout) => CurrentWorkoutBar(workout: workout, workoutID: workout.id))
+                ],
+              ),
             ),
           ],
         ),

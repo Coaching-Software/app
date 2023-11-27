@@ -1,9 +1,22 @@
 
+import 'package:coaching_app/features/workout/domain/workout.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+
+import '../../../agc_error.dart';
+import '../../../agc_loading.dart';
+import '../../all_data_provider.dart';
+import '../../user/domain/user.dart';
+import '../../user/domain/user_collection.dart';
+import '../data/workout_database.dart';
+import '../data/workout_providers.dart';
+import '../domain/workouts_collection.dart';
 
 /// Displays a form for creating a group.
-class NewWorkout extends StatelessWidget {
+class NewWorkout extends ConsumerWidget {
   NewWorkout({
     super.key,
   });
@@ -16,12 +29,57 @@ class NewWorkout extends StatelessWidget {
   final _dateFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<AllData> asyncAllData = ref.watch(allDataProvider);
+    return asyncAllData.when(
+        data: (allData) =>
+            _build(
+              context: context,
+              workouts: allData.workouts,
+              users: allData.users,
+              ref: ref,
+            ),
+        loading: () => const AGCLoading(),
+        error: (error, st) => AGCError(error.toString(), st.toString()));
+  }
+
+  Widget _build({required BuildContext context, required List<
+      User> users, required WidgetRef ref, required List<Workout> workouts}) {
+    final userCollection = UserCollection(users);
+    final workoutCollection = WorkoutCollection(workouts);
+
+    void addWorkoutToAthleteWorkouts(Workout workout){
+      userCollection.addWorkout(workout.id, ref);
+    }
+
+    void createWorkout() {
+      String workoutName = _nameFieldKey.currentState?.value;
+      DateTime workoutDate = _dateFieldKey.currentState?.value;
+      String workoutDescripton = _descriptionFieldKey.currentState?.value;
+      int numWorkouts = workoutCollection.size();
+      List<String> athletes = userCollection.getAllAthleteIDs();
+
+      String id = 'workout-${(numWorkouts + 1).toString().padLeft(3, '0')}';
+
+
+      Workout newWorkout = Workout(
+        id: id,
+        name: workoutName,
+        date: DateFormat('MMM dd, yyyy').format(workoutDate),
+        description: workoutDescripton,
+        athletes: athletes,
+      );
+      addWorkoutToAthleteWorkouts(newWorkout);
+      WorkoutDatabase workoutDatabase = ref.watch(workoutDatabaseProvider);
+      workoutDatabase.setWorkout(newWorkout);
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(style: TextStyle(color: Colors.white),"New Workout"),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text(style: TextStyle(color: Colors.white), "New Workout"),
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
       ),
       body: Column(
         children: [
@@ -39,10 +97,15 @@ class NewWorkout extends StatelessWidget {
                         height: 70,
                         width: 375,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                         child: FormBuilderTextField(
+                          style: const TextStyle(color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
                           key: _nameFieldKey,
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(10),
@@ -57,7 +120,9 @@ class NewWorkout extends StatelessWidget {
                                   color: Color.fromRGBO(0, 0, 0, 0.0)),
                             ),
                             filled: true,
-                            fillColor: Theme.of(context).primaryColor,
+                            fillColor: Theme
+                                .of(context)
+                                .primaryColor,
                             hintStyle: TextStyle(
                                 color: Colors.grey[400],
                                 fontWeight: FontWeight.bold,
@@ -78,7 +143,10 @@ class NewWorkout extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         height: 50,
                         width: 375,
-                        child: FormBuilderTextField(
+                        child: FormBuilderDateTimePicker(
+                          inputType: InputType.date,
+                          format: DateFormat('MMM d, yyyy'),
+                          enabled: true,
                           key: _dateFieldKey,
                           maxLines: 3,
                           minLines: 2,
@@ -95,12 +163,18 @@ class NewWorkout extends StatelessWidget {
                                   color: Color.fromRGBO(0, 0, 0, 0.0)),
                             ),
                             filled: true,
-                            fillColor: Theme.of(context).primaryColor,
-                            hintStyle: TextStyle(
-                                color: Colors.grey[400], fontSize: 20),
+                            fillColor: Theme
+                                .of(context)
+                                .primaryColor,
+                            hintStyle: TextStyle(color: Colors.grey[400],
+                                fontSize: 20),
                             hintText: 'Select Date',
                           ),
                           name: 'date',
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal),
                         ),
                       ),
                     ],
@@ -112,10 +186,12 @@ class NewWorkout extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.topLeft,
-                        height: 450,
+                        height: 400,
                         width: 375,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColorLight,
+                          color: Theme
+                              .of(context)
+                              .primaryColorLight,
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                         child: FormBuilderTextField(
@@ -124,7 +200,9 @@ class NewWorkout extends StatelessWidget {
                           minLines: 1,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Theme.of(context).primaryColorLight,
+                            fillColor: Theme
+                                .of(context)
+                                .primaryColorLight,
                             hintStyle: TextStyle(
                                 color: Colors.grey[700], fontSize: 20),
                             hintText: 'Enter Workout',
@@ -146,12 +224,15 @@ class NewWorkout extends StatelessWidget {
                 height: 45,
                 width: 375,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorDark,
+                  color: Theme
+                      .of(context)
+                      .primaryColorDark,
                   borderRadius: const BorderRadius.all(Radius.circular(12)),
                 ),
                 child: MaterialButton(
                   onPressed: () {
-                    /// TODO: add workout to database
+                    print("create workout pressed");
+                    createWorkout();
                   },
                   child: const Text('Create',
                       style: TextStyle(

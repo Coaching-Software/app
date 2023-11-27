@@ -16,4 +16,8 @@ class WorkoutCollection {
     }
     return workouts;
   }
+
+  int size() {
+    return _workouts.length;
+  }
 }
