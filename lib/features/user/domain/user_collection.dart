@@ -49,6 +49,28 @@ class UserCollection{
     return ids;
   }
 
+  bool hasSubmittedSurvey(String userEmail) {
+    return getUser(userEmail).surveySubmitted;
+  }
+
+  void sendNewSurvey( WidgetRef ref){
+    for(User user in _users){
+      User updatedUser = User(
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        workoutIDs: user.workoutIDs,
+        surveySubmitted: false,
+      );
+      ref.read(editUserControllerProvider.notifier).updateUser(
+        user: updatedUser,
+        onSuccess: () {
+        },
+      );
+    }
+  }
+
   void addWorkout(String workoutID, WidgetRef ref) {
     for(User user in _users){
       if(user.role == "athlete"){
@@ -65,6 +87,7 @@ class UserCollection{
           email: user.email,
           role: user.role,
           workoutIDs: newWorkoutIDs,
+          surveySubmitted: user.surveySubmitted,
         );
         ref.read(editUserControllerProvider.notifier).updateUser(
           user: updatedUser,

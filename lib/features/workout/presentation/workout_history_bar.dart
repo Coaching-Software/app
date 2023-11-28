@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../agc_error.dart';
 import '../../../../agc_loading.dart';
 import '../../all_data_provider.dart';
-import '../../survey/survey_history_item_page.dart';
+import '../../survey/presentation/survey_history_item_page.dart';
 import '../domain/workouts_collection.dart';
 
 /// Displays basic user info in a bar given a UserID

@@ -1,4 +1,12 @@
+import 'package:coaching_app/features/user/domain/user_collection.dart';
+import 'package:coaching_app/features/user/presentation/athlete/presentation/survey_submitted_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../../agc_error.dart';
+import '../../../../../agc_loading.dart';
+import '../../../../all_data_provider.dart';
+import '../../../../workout/domain/workout.dart';
+import '../../../domain/user.dart';
 import 'athlete_settings_view.dart';
 import 'athlete_survey_view.dart';
 import 'current_workouts_view.dart';
@@ -6,7 +14,7 @@ import 'current_workouts_view.dart';
 
 
 /// Top-level Layout for the app
-class AthleteView extends StatefulWidget {
+class AthleteView extends ConsumerStatefulWidget {
   AthleteView({
     super.key,
   });
@@ -40,18 +48,29 @@ class AthleteView extends StatefulWidget {
         icon: Icon(Icons.settings),
       ),
     },
+    3: {
+      'title': const Text('Survey'),
+      'body': const SurveySubmitted(),
+      'navItem': const BottomNavigationBarItem(
+        label: 'Survey',
+        icon: Icon(Icons.format_align_justify_outlined),
+      ),
+    },
   };
 
   @override
-  State<AthleteView> createState() => _AthleteViewState();
+  AthleteViewState createState() => AthleteViewState();
 }
 
-class _AthleteViewState extends State<AthleteView> {
+class AthleteViewState extends ConsumerState<AthleteView> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     if (index != _selectedIndex) {
       setState(() {
+        if(index == 1){
+
+        }
         _selectedIndex = index;
       });
     }
@@ -59,10 +78,45 @@ class _AthleteViewState extends State<AthleteView> {
 
   @override
   Widget build(BuildContext context) {
+    final AsyncValue<AllData> asyncAllData = ref.watch(allDataProvider);
+    return asyncAllData.when(
+        data: (allData) =>
+            _build(
+              context: context,
+              workouts: allData.workouts,
+              users: allData.users,
+              individualresponses: allData.individualresponses,
+              currentUserEmail: allData.currentUserEmail,
+            ),
+        loading: () => const AGCLoading(),
+        error: (error, st) => AGCError(error.toString(), st.toString()));
+  }
+
+  Widget _build({required BuildContext context, required List<
+      User> users, required List<Workout> workouts, required individualresponses, required currentUserEmail}) {
+
+    final userCollection = UserCollection(users);
+    bool hasSubmitted = userCollection.hasSubmittedSurvey(currentUserEmail);
+
+    int showToAthlete(bool hasSubmitted){
+      if(_selectedIndex == 0){
+        return 0;
+      }
+      if(_selectedIndex == 2){
+        return 2;
+      }
+      if(hasSubmitted){
+        return 3;
+      } else {
+        return 1;
+      }
+    }
+
+
     return Scaffold(
       body: SafeArea(
         minimum: const EdgeInsets.all(12.0),
-        child: widget.pages[_selectedIndex]['body'],
+        child: widget.pages[showToAthlete(hasSubmitted)]['body'],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // needed when more than 3 items

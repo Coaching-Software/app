@@ -14,6 +14,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       workoutIDs: (json['workoutIDs'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      surveySubmitted: json['surveySubmitted'] as bool,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'name': instance.name,
       'email': instance.email,
       'workoutIDs': instance.workoutIDs,
+      'surveySubmitted': instance.surveySubmitted,
     };

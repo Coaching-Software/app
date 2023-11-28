@@ -1,20 +1,24 @@
-import 'package:coaching_app/features/survey/survey_history_item_page.dart';
+import 'package:coaching_app/features/individual_response/domain/individualresponse.dart';
+import 'package:coaching_app/features/survey/domain/survey.dart';
+import 'package:coaching_app/features/individual_response/domain/individualresponse_collection.dart';
+import 'package:coaching_app/features/survey/presentation/response_item_page.dart';
+import 'package:coaching_app/features/survey/presentation/survey_history_item_page.dart';
 import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../agc_error.dart';
-import '../../../../agc_loading.dart';
-import '../all_data_provider.dart';
+import '../../../../../agc_error.dart';
+import '../../../../../agc_loading.dart';
+import '../../all_data_provider.dart';
 
 /// Displays basic user info in a bar given a UserID
-class SurveyBar extends ConsumerWidget {
-  const SurveyBar({
+class ResponseBar extends ConsumerWidget {
+  const ResponseBar({
     super.key,
-    required this.surveyID,
+    required this.responseID,
   });
 
-  final String surveyID;
+  final String responseID;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +26,7 @@ class SurveyBar extends ConsumerWidget {
     return asyncAllData.when(
         data: (allData) => _build(
           context: context,
-          workouts: allData.workouts,
+          responses: allData.individualresponses,
         ),
         loading: () => const AGCLoading(),
         error: (error, st) => AGCError(error.toString(), st.toString()));
@@ -30,7 +34,10 @@ class SurveyBar extends ConsumerWidget {
 
   Widget _build(
       {required BuildContext context,
-        required List<Workout> workouts}) {
+        required List<Individualresponse> responses}) {
+
+    final responseCollection = IndividualresponseCollection(responses);
+    Individualresponse currentResponse = responseCollection.getResponse(responseID);
 
     return Column(
       children: [
@@ -44,18 +51,18 @@ class SurveyBar extends ConsumerWidget {
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => SurveyItemPage(
-                    surveyID: surveyID,
+                  builder: (context) => ResponseItemPage(
+                    responseID: responseID,
                   )),
             ),
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(width: 15.0),
-                    Text("Survey date",
+                    Text(currentResponse.name,
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

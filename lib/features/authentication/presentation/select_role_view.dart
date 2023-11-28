@@ -48,11 +48,11 @@ class SelectRoleView extends ConsumerWidget {
         role: newRole,
         email: currentUser.email,
         workoutIDs: currentUser.workoutIDs,
+        surveySubmitted: currentUser.surveySubmitted,
       );
       ref.read(editUserControllerProvider.notifier).updateUser(
             user: updatedUser,
             onSuccess: () {
-              GlobalSnackBar.show('Updated User Role');
             },
           );
       Navigator.pushReplacementNamed(context, CoachView.routeName);
@@ -66,11 +66,11 @@ class SelectRoleView extends ConsumerWidget {
         role: newRole,
         email: currentUser.email,
         workoutIDs: currentUser.workoutIDs,
+        surveySubmitted: currentUser.surveySubmitted,
       );
       ref.read(editUserControllerProvider.notifier).updateUser(
             user: updatedUser,
             onSuccess: () {
-              GlobalSnackBar.show('Updated User Role');
             },
           );
       Navigator.pushReplacementNamed(context, AthleteView.routeName);
@@ -97,6 +97,7 @@ class SelectRoleView extends ConsumerWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         assignRoleCoach();
+                        GlobalSnackBar.show('Updated User Role', context);
                       },
                       child: const Text(
                           style: TextStyle(
@@ -110,6 +111,7 @@ class SelectRoleView extends ConsumerWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         assignRoleAthlete();
+                        GlobalSnackBar.show('Updated User Role', context);
                       },
                       child: const Text(
                           style: TextStyle(

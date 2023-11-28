@@ -231,7 +231,6 @@ class NewWorkout extends ConsumerWidget {
                 ),
                 child: MaterialButton(
                   onPressed: () {
-                    print("create workout pressed");
                     createWorkout();
                   },
                   child: const Text('Create',

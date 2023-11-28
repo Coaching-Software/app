@@ -5,4 +5,10 @@ class FirestorePath {
 
   static String workout(String workoutID) => 'workouts/$workoutID';
   static String workouts() => 'workouts';
+
+  static String survey(String surveyID) => 'surveys/$surveyID';
+  static String surveys() => 'surveys';
+
+  static String individualresponse(String individualresponseID) => 'individualresponses/$individualresponseID';
+  static String individualresponses() => 'individualresponses';
 }

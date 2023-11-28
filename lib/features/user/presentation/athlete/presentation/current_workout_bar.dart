@@ -47,7 +47,6 @@ class CurrentWorkoutBar extends ConsumerWidget {
     final userCollection = UserCollection(users);
     final currentUser = userCollection.getUser(currentUserEmail);
 
-
     return Dismissible(
       key: Key(workoutID),
       onDismissed: (direction) {
@@ -63,6 +62,7 @@ class CurrentWorkoutBar extends ConsumerWidget {
             role: currentUser.role,
             email: currentUser.email,
             workoutIDs: updatedWorkoutIDs,
+            surveySubmitted: currentUser.surveySubmitted,
           );
 
           List<String> newAthletes = [];
@@ -89,7 +89,7 @@ class CurrentWorkoutBar extends ConsumerWidget {
           ref.read(editUserControllerProvider.notifier).updateUser(
             user: updatedUser,
             onSuccess: () {
-              GlobalSnackBar.show('Deleted Workout!');
+              GlobalSnackBar.show('Deleted Workout!', context);
             },
           );
       },

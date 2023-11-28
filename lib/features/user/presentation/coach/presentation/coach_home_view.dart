@@ -1,5 +1,5 @@
 
-import 'package:coaching_app/features/survey/send_survey.dart';
+import 'package:coaching_app/features/survey/presentation/send_survey.dart';
 import 'package:flutter/material.dart';
 
 

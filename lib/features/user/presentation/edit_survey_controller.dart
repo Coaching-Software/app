@@ -1,15 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../survey/data/survey_database.dart';
+import '../../survey/data/survey_providers.dart';
+import '../../survey/domain/survey.dart';
 
-part 'edit_workout_controller.g.dart';
+
+part 'edit_survey_controller.g.dart';
 
 // The design of this controller is modeled on:
 // https://codewithandrea.com/articles/flutter-navigate-without-context-gorouter-riverpod/
 // https://codewithandrea.com/articles/async-notifier-mounted-riverpod/
 // I am not in love with the "mounted" shenanigans. Sigh.
 @riverpod
-class EditWorkoutController extends _$EditWorkoutController {
+class EditSurveyController extends _$EditSurveyController {
   bool mounted = true;
 
   @override
@@ -18,14 +22,14 @@ class EditWorkoutController extends _$EditWorkoutController {
     state = const AsyncData(null);
   }
 
-  Future<void> updateWorkout({
-    required Workout workout,
+  Future<void> updateSurvey({
+    required Survey survey,
     required VoidCallback onSuccess,
   }) async {
     state = const AsyncLoading();
-    WorkoutDatabase workoutDatabase = ref.watch(workoutDatabaseProvider);
+    SurveyDatabase surveyDatabase = ref.watch(surveyDatabaseProvider);
     final newState =
-    await AsyncValue.guard(() => workoutDatabase.setWorkout(workout));
+    await AsyncValue.guard(() => surveyDatabase.setSurvey(survey));
     if (mounted) {
       state = newState;
     }
@@ -35,14 +39,14 @@ class EditWorkoutController extends _$EditWorkoutController {
     }
   }
 
-  Future<void> deleteWorkout({
-    required Workout workout,
+  Future<void> deleteSurvey({
+    required Survey survey,
     required VoidCallback onSuccess,
   }) async {
     state = const AsyncLoading();
-    WorkoutDatabase workoutDatabase = ref.watch(workoutDatabaseProvider);
+    SurveyDatabase surveyDatabase = ref.watch(surveyDatabaseProvider);
     final newState =
-    await AsyncValue.guard(() => workoutDatabase.deleteWorkout(workout));
+    await AsyncValue.guard(() => surveyDatabase.deleteSurvey(survey));
     if (mounted) {
       state = newState;
     }

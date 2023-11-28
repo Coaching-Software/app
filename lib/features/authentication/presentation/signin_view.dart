@@ -76,7 +76,9 @@ class SignInView extends ConsumerWidget {
                 role: 'null',
                 name: email,
                 email: email,
-                workoutIDs: []);
+                workoutIDs: [],
+              surveySubmitted: false,
+            );
             ref.read(editUserControllerProvider.notifier).updateUser(
               user: newUser,
               onSuccess: () {},

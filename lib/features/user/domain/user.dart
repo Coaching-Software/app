@@ -16,6 +16,7 @@ class User with _$User{
     required String name,
     required String email,
     required List<String> workoutIDs,
+    required bool surveySubmitted,
   }) = _User;
 
   const User._();

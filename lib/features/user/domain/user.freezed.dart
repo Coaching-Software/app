@@ -25,6 +25,7 @@ mixin _$User {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   List<String> get workoutIDs => throw _privateConstructorUsedError;
+  bool get surveySubmitted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $UserCopyWith<$Res> {
       String role,
       String name,
       String email,
-      List<String> workoutIDs});
+      List<String> workoutIDs,
+      bool surveySubmitted});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? name = null,
     Object? email = null,
     Object? workoutIDs = null,
+    Object? surveySubmitted = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -84,6 +87,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.workoutIDs
           : workoutIDs // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      surveySubmitted: null == surveySubmitted
+          ? _value.surveySubmitted
+          : surveySubmitted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -100,7 +107,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String role,
       String name,
       String email,
-      List<String> workoutIDs});
+      List<String> workoutIDs,
+      bool surveySubmitted});
 }
 
 /// @nodoc
@@ -118,6 +126,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? name = null,
     Object? email = null,
     Object? workoutIDs = null,
+    Object? surveySubmitted = null,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -140,6 +149,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value._workoutIDs
           : workoutIDs // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      surveySubmitted: null == surveySubmitted
+          ? _value.surveySubmitted
+          : surveySubmitted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -152,7 +165,8 @@ class _$UserImpl extends _User {
       required this.role,
       required this.name,
       required this.email,
-      required final List<String> workoutIDs})
+      required final List<String> workoutIDs,
+      required this.surveySubmitted})
       : _workoutIDs = workoutIDs,
         super._();
 
@@ -176,8 +190,11 @@ class _$UserImpl extends _User {
   }
 
   @override
+  final bool surveySubmitted;
+
+  @override
   String toString() {
-    return 'User(id: $id, role: $role, name: $name, email: $email, workoutIDs: $workoutIDs)';
+    return 'User(id: $id, role: $role, name: $name, email: $email, workoutIDs: $workoutIDs, surveySubmitted: $surveySubmitted)';
   }
 
   @override
@@ -190,13 +207,15 @@ class _$UserImpl extends _User {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             const DeepCollectionEquality()
-                .equals(other._workoutIDs, _workoutIDs));
+                .equals(other._workoutIDs, _workoutIDs) &&
+            (identical(other.surveySubmitted, surveySubmitted) ||
+                other.surveySubmitted == surveySubmitted));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, role, name, email,
-      const DeepCollectionEquality().hash(_workoutIDs));
+      const DeepCollectionEquality().hash(_workoutIDs), surveySubmitted);
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +237,8 @@ abstract class _User extends User {
       required final String role,
       required final String name,
       required final String email,
-      required final List<String> workoutIDs}) = _$UserImpl;
+      required final List<String> workoutIDs,
+      required final bool surveySubmitted}) = _$UserImpl;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -233,6 +253,8 @@ abstract class _User extends User {
   String get email;
   @override
   List<String> get workoutIDs;
+  @override
+  bool get surveySubmitted;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

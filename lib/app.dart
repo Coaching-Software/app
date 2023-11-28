@@ -1,9 +1,9 @@
 import 'package:coaching_app/features/authentication/presentation/forgot_password_view.dart';
 import 'package:coaching_app/features/authentication/presentation/select_role_view.dart';
 import 'package:coaching_app/features/authentication/presentation/verify_email_view.dart';
-import 'package:coaching_app/features/survey/send_survey.dart';
-import 'package:coaching_app/features/survey/survey_history.dart';
-import 'package:coaching_app/features/survey/survey_history_item_page.dart';
+import 'package:coaching_app/features/survey/presentation/send_survey.dart';
+import 'package:coaching_app/features/survey/presentation/survey_history.dart';
+import 'package:coaching_app/features/survey/presentation/survey_history_item_page.dart';
 import 'package:coaching_app/features/workout/presentation/workout_history.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ import 'features/user/presentation/athlete/presentation/athlete_settings_view.da
 import 'features/user/presentation/athlete/presentation/athlete_survey_view.dart';
 import 'features/user/presentation/athlete/presentation/athlete_view.dart';
 import 'features/user/presentation/athlete/presentation/current_workouts_view.dart';
+import 'features/user/presentation/athlete/presentation/survey_submitted_view.dart';
 import 'features/user/presentation/coach/presentation/coach_home_view.dart';
 import 'features/user/presentation/coach/presentation/coach_settings_view.dart';
 import 'features/user/presentation/coach/presentation/coach_view.dart';
@@ -79,6 +80,8 @@ class MyApp extends StatelessWidget {
                 return SendSurvey();
               case SurveyHistory.routeName:
                 return SurveyHistory();
+              case SurveySubmitted.routeName:
+                return SurveySubmitted();
               case SurveyItemPage.routeName:
                 return SurveyItemPage(surveyID: '',);
               default:

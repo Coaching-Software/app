@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../survey/survey_history.dart';
+import '../../../../survey/presentation/survey_history.dart';
 import '../../../../workout/presentation/workout_history.dart';
 
 
