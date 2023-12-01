@@ -42,7 +42,7 @@ class AthleteView extends ConsumerStatefulWidget {
     },
     2: {
       'title': const Text('Settings'),
-      'body': const AthleteSettingsView(),
+      'body': AthleteSettingsView(),
       'navItem': const BottomNavigationBarItem(
         label: 'Settings',
         icon: Icon(Icons.settings),

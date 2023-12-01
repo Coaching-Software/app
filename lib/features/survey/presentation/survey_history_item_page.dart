@@ -136,7 +136,13 @@ class SurveyItemPage extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 20.0),
-          // Enter Date
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Individual Responses:", style: TextStyle(fontSize: 25)),
+            ],
+          ),
+          const SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

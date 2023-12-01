@@ -20,15 +20,7 @@ class CoachSettingsView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 20.0),
-          TextField(
-            controller: nameController,
-            decoration: const InputDecoration(
-              labelText: 'Change Name',
-              hintText: 'Enter New Name',
-            ),
-          ),
-          const SizedBox(height: 20.0),
+          const SizedBox(height: 40.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
