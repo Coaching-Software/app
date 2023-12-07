@@ -6,8 +6,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../agc_error.dart';
-import '../../../agc_loading.dart';
+import '../../../error.dart';
+import '../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
@@ -65,7 +65,7 @@ class NewWorkout extends ConsumerWidget {
       Workout newWorkout = Workout(
         id: id,
         name: workoutName,
-        date: DateFormat('MMM dd, yyyy').format(workoutDate),
+        date: DateFormat('MMM d, yyyy').format(workoutDate),
         description: workoutDescripton,
         athletes: athletes,
       );

@@ -6,8 +6,8 @@ import 'package:coaching_app/features/survey/presentation/ResponseBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../agc_error.dart';
-import '../../../../agc_loading.dart';
+import '../../../../error.dart';
+import '../../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../individual_response/domain/individualresponse.dart';
 
@@ -52,9 +52,11 @@ class SurveyItemPage extends ConsumerWidget {
 
     List<Individualresponse> individualResponses = [];
 
-    for(var responseID in currentSurvey.individualResponses){
+    print(currentSurvey.individualResponses);
+    for(String responseID in currentSurvey.individualResponses){
       individualResponses.add(responseCollection.getResponse(responseID));
     }
+    print(individualResponses);
 
     return Scaffold(
       appBar: AppBar(
@@ -146,22 +148,23 @@ class SurveyItemPage extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                height: 70,
-                width: 375,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ...individualResponses
-                            .map((response) => ResponseBar(responseID: response.id))
-                      ],
+              Flexible(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  width: 375,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          ...individualResponses
+                              .map((response) => ResponseBar(responseID: response.id))
+                        ],
+                      ),
                     ),
                   ),
                 ),

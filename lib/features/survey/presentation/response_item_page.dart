@@ -6,8 +6,8 @@ import 'package:coaching_app/features/survey/presentation/ResponseBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../agc_error.dart';
-import '../../../../agc_loading.dart';
+import '../../../../error.dart';
+import '../../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../individual_response/domain/individualresponse.dart';
 

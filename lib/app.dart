@@ -17,8 +17,6 @@ import 'features/user/presentation/athlete/presentation/survey_submitted_view.da
 import 'features/user/presentation/coach/presentation/coach_home_view.dart';
 import 'features/user/presentation/coach/presentation/coach_settings_view.dart';
 import 'features/user/presentation/coach/presentation/coach_view.dart';
-import 'features/authentication/presentation/athlete_signup.dart';
-import 'features/authentication/presentation/coach_signup.dart';
 import 'features/page_not_found_view.dart';
 import 'features/user/presentation/coach/presentation/history_view.dart';
 import 'features/workout/presentation/new_workout.dart';
@@ -46,10 +44,6 @@ class MyApp extends StatelessWidget {
                 return SignInView();
               case ForgotPasswordView.routeName:
                 return ForgotPasswordView();
-              case CoachSignupView.routeName:
-                return CoachSignupView();
-              case AthleteSignupView.routeName:
-                return AthleteSignupView();
               case CoachSettingsView.routeName:
                 return CoachSettingsView();
               case HistoryView.routeName:

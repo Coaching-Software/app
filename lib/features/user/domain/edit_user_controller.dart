@@ -1,18 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../data/workout_providers.dart';
-import '../data/workout_database.dart';
-import '../domain/workout.dart';
+import '../data/user_database.dart';
+import '../data/user_providers.dart';
+import 'user.dart';
 
-part 'edit_workout_controller.g.dart';
+
+part 'edit_user_controller.g.dart';
 
 // The design of this controller is modeled on:
 // https://codewithandrea.com/articles/flutter-navigate-without-context-gorouter-riverpod/
 // https://codewithandrea.com/articles/async-notifier-mounted-riverpod/
 // I am not in love with the "mounted" shenanigans. Sigh.
 @riverpod
-class EditWorkoutController extends _$EditWorkoutController {
+class EditUserController extends _$EditUserController {
   bool mounted = true;
 
   @override
@@ -21,14 +22,14 @@ class EditWorkoutController extends _$EditWorkoutController {
     state = const AsyncData(null);
   }
 
-  Future<void> updateWorkout({
-    required Workout workout,
+  Future<void> updateUser({
+    required User user,
     required VoidCallback onSuccess,
   }) async {
     state = const AsyncLoading();
-    WorkoutDatabase workoutDatabase = ref.watch(workoutDatabaseProvider);
+    UserDatabase userDatabase = ref.watch(userDatabaseProvider);
     final newState =
-    await AsyncValue.guard(() => workoutDatabase.setWorkout(workout));
+    await AsyncValue.guard(() => userDatabase.setUser(user));
     if (mounted) {
       state = newState;
     }
@@ -38,14 +39,14 @@ class EditWorkoutController extends _$EditWorkoutController {
     }
   }
 
-  Future<void> deleteWorkout({
-    required Workout workout,
+  Future<void> deleteUser({
+    required User user,
     required VoidCallback onSuccess,
   }) async {
     state = const AsyncLoading();
-    WorkoutDatabase workoutDatabase = ref.watch(workoutDatabaseProvider);
+    UserDatabase userDatabase = ref.watch(userDatabaseProvider);
     final newState =
-    await AsyncValue.guard(() => workoutDatabase.deleteWorkout(workout));
+    await AsyncValue.guard(() => userDatabase.deleteUser(user));
     if (mounted) {
       state = newState;
     }

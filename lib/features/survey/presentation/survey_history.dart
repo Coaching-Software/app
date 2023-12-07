@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../agc_error.dart';
-import '../../../../../agc_loading.dart';
+import '../../../../../error.dart';
+import '../../../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../domain/survey.dart';
 

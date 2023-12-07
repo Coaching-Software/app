@@ -5,12 +5,12 @@ import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:coaching_app/features/workout/presentation/workout_history_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../workout/presentation/edit_workout_controller.dart';
-import '../../../presentation/edit_user_controller.dart';
+import '../../../../workout/domain/edit_workout_controller.dart';
+import '../../../domain/edit_user_controller.dart';
 
 
-import '../../../../../agc_error.dart';
-import '../../../../../agc_loading.dart';
+import '../../../../../error.dart';
+import '../../../../../loading.dart';
 import '../../../../all_data_provider.dart';
 import '../../../../global_snackbar.dart';
 import '../../../../workout/domain/workouts_collection.dart';

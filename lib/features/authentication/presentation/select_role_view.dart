@@ -4,12 +4,12 @@ import 'package:coaching_app/features/user/presentation/coach/presentation/coach
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../agc_error.dart';
-import '../../../agc_loading.dart';
+import '../../../error.dart';
+import '../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../global_snackbar.dart';
 import '../../user/presentation/athlete/presentation/athlete_view.dart';
-import '../../user/presentation/edit_user_controller.dart';
+import '../../user/domain/edit_user_controller.dart';
 
 /// Presents the page containing fields to enter a username and password, plus buttons.
 class SelectRoleView extends ConsumerWidget {

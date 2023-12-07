@@ -31,6 +31,7 @@ String currentUserEmail(CurrentUserEmailRef ref) {
 
 
   final FirebaseAuth instance = ref.watch(firebaseAuthProvider);
+  print(instance.currentUser?.email! ?? 'nothing');
   return instance.currentUser?.email! ?? '';
 
 

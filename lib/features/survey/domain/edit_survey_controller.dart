@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../survey/data/survey_database.dart';
-import '../../survey/data/survey_providers.dart';
-import '../../survey/domain/survey.dart';
+import '../data/survey_database.dart';
+import '../data/survey_providers.dart';
+import 'survey.dart';
 
 
 part 'edit_survey_controller.g.dart';

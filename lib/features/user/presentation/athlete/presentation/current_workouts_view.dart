@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../agc_error.dart';
-import '../../../../../agc_loading.dart';
+import '../../../../../error.dart';
+import '../../../../../loading.dart';
 import '../../../../all_data_provider.dart';
 import '../../../../workout/domain/workout.dart';
 import '../../../../workout/domain/workouts_collection.dart';
@@ -44,7 +44,7 @@ class CurrentWorkoutsView extends ConsumerWidget {
 
     List<DateTime> dates = [];
     List<Workout> sortedWorkouts = [];
-    DateFormat format = DateFormat("MMM dd, yyyy");
+    DateFormat format = DateFormat("MMM d, yyyy");
     List<String> sortedDates = [];
     for(Workout workout in currentUserWorkouts){
       dates.add(format.parse(workout.date));

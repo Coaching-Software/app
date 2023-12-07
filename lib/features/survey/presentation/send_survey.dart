@@ -6,8 +6,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../agc_error.dart';
-import '../../../agc_loading.dart';
+import '../../../error.dart';
+import '../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../global_snackbar.dart';
 import '../../user/domain/user.dart';

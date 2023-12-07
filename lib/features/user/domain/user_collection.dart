@@ -1,7 +1,7 @@
 import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../presentation/edit_user_controller.dart';
+import 'edit_user_controller.dart';
 import 'user.dart';
 
 /// Encapsulates operations on the list of [User] returned from Firestore.

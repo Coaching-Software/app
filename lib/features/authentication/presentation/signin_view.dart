@@ -4,14 +4,14 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart' hide ForgotPasswordView;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../agc_error.dart';
-import '../../../agc_loading.dart';
+import '../../../error.dart';
+import '../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../page_not_found_view.dart';
 import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
 import '../../user/presentation/coach/presentation/coach_view.dart';
-import '../../user/presentation/edit_user_controller.dart';
+import '../../user/domain/edit_user_controller.dart';
 import 'decorations.dart';
 import 'forgot_password_view.dart';
 import 'verify_email_view.dart';

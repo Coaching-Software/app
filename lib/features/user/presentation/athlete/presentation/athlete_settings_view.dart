@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../agc_error.dart';
-import '../../../../../agc_loading.dart';
+import '../../../../../error.dart';
+import '../../../../../loading.dart';
 import '../../../../all_data_provider.dart';
 import '../../../../authentication/presentation/signin_view.dart';
 import '../../../domain/user.dart';
-import '../../edit_user_controller.dart';
+import '../../../domain/edit_user_controller.dart';
 
 /// High level display of the settings page.
 class AthleteSettingsView extends ConsumerWidget {

@@ -35,64 +35,62 @@ class _HistoryViewState extends State<HistoryView> {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Flexible(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 45,
-                  width: 175,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                  child: MaterialButton(
-                    onPressed: () {
-                      if (0 != _selectedIndex) {
-                        setState(() {
-                          _selectedIndex = 0;
-                        });
-                      }
-                    },
-                    child: const Text('Workouts',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16)),
-                  ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Container(
+                alignment: Alignment.center,
+                height: 45,
+                width: 175,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                child: MaterialButton(
+                  onPressed: () {
+                    if (0 != _selectedIndex) {
+                      setState(() {
+                        _selectedIndex = 0;
+                      });
+                    }
+                  },
+                  child: const Text('Workouts',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
                 ),
               ),
-              const SizedBox(width: 20,),
-              Flexible(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 45,
-                  width: 175,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                  child: MaterialButton(
-                    onPressed: () {
-                      if (1 != _selectedIndex) {
-                        setState(() {
-                          _selectedIndex = 1;
-                        });
-                      }
-                    },
-                    child: const Text('Surveys',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16)),
-                  ),
+            ),
+            const SizedBox(width: 20,),
+            Flexible(
+              child: Container(
+                alignment: Alignment.center,
+                height: 45,
+                width: 175,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                child: MaterialButton(
+                  onPressed: () {
+                    if (1 != _selectedIndex) {
+                      setState(() {
+                        _selectedIndex = 1;
+                      });
+                    }
+                  },
+                  child: const Text('Surveys',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
                 ),
               ),
-            ],
+            ),
+          ],
         ),
-          ),
         
       ),
       body: widget.pages[_selectedIndex]['body'],
