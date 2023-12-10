@@ -4,7 +4,7 @@ import '../../../../survey/presentation/survey_history.dart';
 import '../../../../workout/presentation/workout_history.dart';
 
 
-/// Middle-level Layout for the profile view, shows either classes or groups for currently signin user
+/// Middle-level Layout for coach history view, shows either historical workouts or surveys.
 class HistoryView extends StatefulWidget {
   HistoryView({
     super.key,
@@ -12,8 +12,6 @@ class HistoryView extends StatefulWidget {
 
   static const routeName = '/historyView';
 
-  // This data structure will eventually become stateful and thus will
-  // need to be moved into the state widget.
   final Map pages = {
     0: {
       'body': const WorkoutHistory(),

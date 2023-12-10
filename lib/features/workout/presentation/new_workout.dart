@@ -15,7 +15,7 @@ import '../data/workout_database.dart';
 import '../data/workout_providers.dart';
 import '../domain/workouts_collection.dart';
 
-/// Displays a form for creating a group.
+/// Displays a form for creating a new workout.
 class NewWorkout extends ConsumerWidget {
   NewWorkout({
     super.key,

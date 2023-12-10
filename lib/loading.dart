@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Displays loading circle
 class AGCLoading extends StatelessWidget {
   const AGCLoading({super.key});
 

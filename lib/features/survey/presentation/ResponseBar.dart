@@ -8,7 +8,7 @@ import '../../../../../error.dart';
 import '../../../../../loading.dart';
 import '../../all_data_provider.dart';
 
-/// Displays basic user info in a bar given a UserID
+/// Displays basic reponse info in a bar given a ResponseID
 class ResponseBar extends ConsumerWidget {
   const ResponseBar({
     super.key,

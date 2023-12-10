@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../error.dart';
 import '../../../../../loading.dart';
@@ -13,15 +12,13 @@ import '../../../../all_data_provider.dart';
 import '../../../../individual_response/data/individualresponse_database.dart';
 import '../../../../individual_response/data/individualresponse_providers.dart';
 import '../../../../individual_response/domain/individualresponse.dart';
-import '../../../../survey/data/survey_database.dart';
-import '../../../../survey/data/survey_providers.dart';
 import '../../../../workout/domain/workout.dart';
 import '../../../domain/user.dart';
 import '../../../domain/user_collection.dart';
 import '../../../../survey/domain/edit_survey_controller.dart';
 import '../../../domain/edit_user_controller.dart';
 
-/// Middle-level Layout for the profile view, shows either classes or groups for currently signin user
+/// Displays a survey response form.
 class AthleteSurveyView extends ConsumerWidget {
   AthleteSurveyView({
     super.key,

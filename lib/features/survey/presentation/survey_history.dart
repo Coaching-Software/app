@@ -1,6 +1,4 @@
-import 'package:coaching_app/features/survey/domain/survey_collection.dart';
 import 'package:coaching_app/features/survey/presentation/survey_history_bar.dart';
-import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +8,7 @@ import '../../../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../domain/survey.dart';
 
-/// Displays a list of Students in a class.
+/// Displays a list of all surveys that have been sent.
 class SurveyHistory extends ConsumerWidget {
   const SurveyHistory({
     super.key,

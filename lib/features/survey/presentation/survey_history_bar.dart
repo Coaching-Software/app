@@ -1,7 +1,6 @@
 import 'package:coaching_app/features/survey/domain/survey.dart';
 import 'package:coaching_app/features/survey/domain/survey_collection.dart';
 import 'package:coaching_app/features/survey/presentation/survey_history_item_page.dart';
-import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,7 +8,7 @@ import '../../../../../error.dart';
 import '../../../../../loading.dart';
 import '../../all_data_provider.dart';
 
-/// Displays basic user info in a bar given a UserID
+/// Displays survey info in a bar given a surveyID
 class SurveyBar extends ConsumerWidget {
   const SurveyBar({
     super.key,

@@ -8,11 +8,6 @@ import '../../../error.dart';
 import '../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../user/domain/user.dart';
-import '../../user/domain/user_collection.dart';
-import '../../user/presentation/athlete/presentation/current_workouts_view.dart';
-import '../../page_not_found_view.dart';
-import '../../user/presentation/coach/presentation/coach_home_view.dart';
-import '../../user/presentation/coach/presentation/coach_view.dart';
 import 'decorations.dart';
 
 /// Builds the page to support email verification.

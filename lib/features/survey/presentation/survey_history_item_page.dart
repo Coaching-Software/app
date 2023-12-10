@@ -10,7 +10,7 @@ import '../../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../individual_response/domain/individualresponse.dart';
 
-/// Displays a form for creating a group.
+/// Displays a page summarizing a whole survey given its SurveyID
 class SurveyItemPage extends ConsumerWidget {
   SurveyItemPage({
     super.key,

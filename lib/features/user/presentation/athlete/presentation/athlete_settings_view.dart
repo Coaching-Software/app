@@ -11,7 +11,7 @@ import '../../../../authentication/presentation/signin_view.dart';
 import '../../../domain/user.dart';
 import '../../../domain/edit_user_controller.dart';
 
-/// High level display of the settings page.
+/// Displays athlete settings: change name and logout.
 class AthleteSettingsView extends ConsumerWidget {
   AthleteSettingsView({
     super.key,

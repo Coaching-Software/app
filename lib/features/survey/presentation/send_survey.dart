@@ -2,7 +2,6 @@ import 'package:coaching_app/features/survey/data/survey_database.dart';
 import 'package:coaching_app/features/survey/domain/survey_collection.dart';
 import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -14,7 +13,7 @@ import '../../user/domain/user.dart';
 import '../data/survey_providers.dart';
 import '../domain/survey.dart';
 
-/// Displays a form for creating a group.
+/// Displays a button to send a new Survey.
 class SendSurvey extends ConsumerWidget {
   SendSurvey({
     super.key,

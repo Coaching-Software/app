@@ -5,7 +5,7 @@ import 'history_view.dart';
 
 
 
-/// Top-level Layout for the app
+/// Top-level Layout for Coaches: includes navigation for home, history, and settings.
 class CoachView extends StatefulWidget {
   CoachView({
     super.key,

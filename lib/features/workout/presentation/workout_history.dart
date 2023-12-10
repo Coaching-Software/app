@@ -8,7 +8,7 @@ import '../../../../error.dart';
 import '../../../../loading.dart';
 import '../../all_data_provider.dart';
 
-/// Displays a list of Students in a class.
+/// Displays a list historical workouts.
 class WorkoutHistory extends ConsumerWidget {
   const WorkoutHistory({
     super.key,

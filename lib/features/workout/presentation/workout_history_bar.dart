@@ -6,10 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../error.dart';
 import '../../../../loading.dart';
 import '../../all_data_provider.dart';
-import '../../survey/presentation/survey_history_item_page.dart';
 import '../domain/workouts_collection.dart';
 
-/// Displays basic user info in a bar given a UserID
+/// Displays basic workout info in a bar given a WorkoutID
 class WorkoutBar extends ConsumerWidget {
   const WorkoutBar({
     super.key,

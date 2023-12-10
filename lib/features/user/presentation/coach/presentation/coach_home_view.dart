@@ -2,11 +2,9 @@
 import 'package:coaching_app/features/survey/presentation/send_survey.dart';
 import 'package:flutter/material.dart';
 
-
-import '../../../../authentication/presentation/signin_view.dart';
 import '../../../../workout/presentation/new_workout.dart';
 
-/// High level display of the settings page.
+/// Coach Home: Displays buttons to create new workout or send new survey.
 class CoachHomeView extends StatelessWidget {
   const CoachHomeView({
     super.key,

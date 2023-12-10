@@ -14,7 +14,7 @@ import 'current_workouts_view.dart';
 
 
 
-/// Top-level Layout for the app
+/// Top-level Layout for Athletes. Includes navigation for workouts, survey response, and settings.
 class AthleteView extends ConsumerStatefulWidget {
   AthleteView({
     super.key,

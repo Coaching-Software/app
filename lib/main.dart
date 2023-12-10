@@ -9,6 +9,7 @@ Future<bool> verifyInitialData() async {
   return true;
 }
 
+/// Entry point for the entire application. Initializes the features, database, and authentication, then builds the entire app.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

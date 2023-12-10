@@ -1,8 +1,4 @@
 import 'package:coaching_app/features/individual_response/domain/individualresponse_collection.dart';
-import 'package:coaching_app/features/survey/domain/survey.dart';
-import 'package:coaching_app/features/survey/domain/survey_collection.dart';
-import 'package:coaching_app/features/workout/domain/workouts_collection.dart';
-import 'package:coaching_app/features/survey/presentation/ResponseBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +7,7 @@ import '../../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../../individual_response/domain/individualresponse.dart';
 
-/// Displays a form for creating a group.
+/// Displays a page summarizing a specific survey response given its responseID
 class ResponseItemPage extends ConsumerWidget {
   ResponseItemPage({
     super.key,

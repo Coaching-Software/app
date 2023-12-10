@@ -7,7 +7,7 @@ import '../../../loading.dart';
 import '../../all_data_provider.dart';
 import '../domain/workout.dart';
 
-/// Displays a form for creating a group.
+/// Displays a page with all workout information given a workoutID
 class WorkoutItemPage extends ConsumerWidget {
   WorkoutItemPage({
     super.key,

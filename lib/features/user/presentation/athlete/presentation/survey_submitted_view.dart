@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-/// Displays a form for creating a group.
+/// Displays a "survey already submitted" message.
 class SurveySubmitted extends StatelessWidget {
   const SurveySubmitted({
     super.key,

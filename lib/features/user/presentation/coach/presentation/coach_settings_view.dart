@@ -1,5 +1,4 @@
 
-import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,11 +8,10 @@ import '../../../../../error.dart';
 import '../../../../../loading.dart';
 import '../../../../all_data_provider.dart';
 import '../../../../authentication/presentation/signin_view.dart';
-import '../../../domain/user.dart';
 
 
 
-/// High level display of the settings page.
+/// Displays coach settings: logout.
 class CoachSettingsView extends ConsumerWidget {
   const CoachSettingsView({
     super.key,

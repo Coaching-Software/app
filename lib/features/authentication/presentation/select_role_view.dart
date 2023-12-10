@@ -12,7 +12,7 @@ import '../../global_snackbar.dart';
 import '../../user/presentation/athlete/presentation/athlete_view.dart';
 import '../../user/domain/edit_user_controller.dart';
 
-/// Presents the page containing fields to enter a username and password, plus buttons.
+/// Presents the page for new users to select their role as Coach or Athlete.
 class SelectRoleView extends ConsumerWidget {
   const SelectRoleView({Key? key}) : super(key: key);
 

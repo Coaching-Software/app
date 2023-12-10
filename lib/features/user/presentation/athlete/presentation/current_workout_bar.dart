@@ -1,4 +1,3 @@
-import 'package:coaching_app/features/user/data/user_providers.dart';
 import 'package:coaching_app/features/user/domain/user.dart';
 import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:coaching_app/features/workout/domain/workout.dart';
@@ -16,7 +15,7 @@ import '../../../../all_data_provider.dart';
 import '../../../../global_snackbar.dart';
 import '../../../../workout/domain/workouts_collection.dart';
 
-/// Displays basic user info in a bar given a UserID
+/// Displays basic workout info in a bar given a WorkoutID
 class CurrentWorkoutBar extends ConsumerWidget {
   const CurrentWorkoutBar({
     super.key,

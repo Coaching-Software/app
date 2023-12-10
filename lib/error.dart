@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Shows error message
 class AGCError extends StatelessWidget {
   const AGCError(this.errorMessage, this.stacktrace, {super.key});
 

@@ -22,10 +22,11 @@ import 'features/user/presentation/coach/presentation/history_view.dart';
 import 'features/workout/presentation/new_workout.dart';
 import 'features/workout/presentation/workout_history_item_page.dart';
 
+/// MyApp handles the Top-Level page routing
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

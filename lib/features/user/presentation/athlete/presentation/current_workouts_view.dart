@@ -13,7 +13,7 @@ import '../../../../workout/domain/workouts_collection.dart';
 import 'current_workout_bar.dart';
 
 
-/// Middle-level Layout for the profile view, shows either classes or groups for currently signin user
+/// Displays a page listing all workouts belonging to an Athlete
 class CurrentWorkoutsView extends ConsumerWidget {
   CurrentWorkoutsView({
     super.key,
