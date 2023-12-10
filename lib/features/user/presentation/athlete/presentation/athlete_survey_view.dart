@@ -1,6 +1,7 @@
 import 'package:coaching_app/features/individual_response/domain/individualresponse_collection.dart';
 import 'package:coaching_app/features/survey/domain/survey.dart';
 import 'package:coaching_app/features/survey/domain/survey_collection.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,7 +45,6 @@ class AthleteSurveyView extends ConsumerWidget {
               workouts: allData.workouts,
               users: allData.users,
               individualresponses: allData.individualresponses,
-              currentUserEmail: allData.currentUserEmail,
               surveys: allData.surveys,
               ref: ref,
             ),
@@ -57,12 +57,13 @@ class AthleteSurveyView extends ConsumerWidget {
     required WidgetRef ref,
     required List<Workout> workouts,
     required individualresponses,
-    required currentUserEmail,
     required List<Survey> surveys}) {
     final userCollection = UserCollection(users);
     final individualresponseCollection =
     IndividualresponseCollection(individualresponses);
-    final currentUser = userCollection.getUser(currentUserEmail);
+    final currentAuthUser = FirebaseAuth.instance.currentUser;
+    String? currentUserEmail = currentAuthUser?.email;
+    final currentUser = userCollection.getUser(currentUserEmail!);
     final surveyCollection = SurveyCollection(surveys);
 
     final items = [

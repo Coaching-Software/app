@@ -1,7 +1,6 @@
 import 'package:coaching_app/features/individual_response/domain/individualresponse_collection.dart';
 import 'package:coaching_app/features/survey/domain/survey.dart';
 import 'package:coaching_app/features/survey/domain/survey_collection.dart';
-import 'package:coaching_app/features/workout/domain/workouts_collection.dart';
 import 'package:coaching_app/features/survey/presentation/ResponseBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,11 +51,9 @@ class SurveyItemPage extends ConsumerWidget {
 
     List<Individualresponse> individualResponses = [];
 
-    print(currentSurvey.individualResponses);
     for(String responseID in currentSurvey.individualResponses){
       individualResponses.add(responseCollection.getResponse(responseID));
     }
-    print(individualResponses);
 
     return Scaffold(
       appBar: AppBar(

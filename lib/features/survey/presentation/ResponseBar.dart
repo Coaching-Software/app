@@ -1,9 +1,6 @@
 import 'package:coaching_app/features/individual_response/domain/individualresponse.dart';
-import 'package:coaching_app/features/survey/domain/survey.dart';
 import 'package:coaching_app/features/individual_response/domain/individualresponse_collection.dart';
 import 'package:coaching_app/features/survey/presentation/response_item_page.dart';
-import 'package:coaching_app/features/survey/presentation/survey_history_item_page.dart';
-import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -61,12 +58,13 @@ class ResponseBar extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(width: 15.0),
-                    Text(currentResponse.name,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25)),
+                    Flexible(
+                      child: Text(currentResponse.name,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25)),
+                    ),
                   ],
                 ),
               ],

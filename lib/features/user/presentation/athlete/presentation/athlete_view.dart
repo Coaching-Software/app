@@ -1,5 +1,6 @@
 import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:coaching_app/features/user/presentation/athlete/presentation/survey_submitted_view.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../error.dart';
@@ -86,17 +87,18 @@ class AthleteViewState extends ConsumerState<AthleteView> {
               workouts: allData.workouts,
               users: allData.users,
               individualresponses: allData.individualresponses,
-              currentUserEmail: allData.currentUserEmail,
             ),
         loading: () => const AGCLoading(),
         error: (error, st) => AGCError(error.toString(), st.toString()));
   }
 
   Widget _build({required BuildContext context, required List<
-      User> users, required List<Workout> workouts, required individualresponses, required currentUserEmail}) {
+      User> users, required List<Workout> workouts, required individualresponses}) {
 
     final userCollection = UserCollection(users);
-    bool hasSubmitted = userCollection.hasSubmittedSurvey(currentUserEmail);
+    final currentUser = FirebaseAuth.instance.currentUser;
+    String? currentUserEmail = currentUser?.email;
+    bool hasSubmitted = userCollection.hasSubmittedSurvey(currentUserEmail!);
 
     int showToAthlete(bool hasSubmitted){
       if(_selectedIndex == 0){

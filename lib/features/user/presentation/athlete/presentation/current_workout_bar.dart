@@ -3,6 +3,7 @@ import 'package:coaching_app/features/user/domain/user.dart';
 import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:coaching_app/features/workout/domain/workout.dart';
 import 'package:coaching_app/features/workout/presentation/workout_history_item_page.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../workout/domain/edit_workout_controller.dart';
@@ -32,7 +33,6 @@ class CurrentWorkoutBar extends ConsumerWidget {
           context: context,
           workouts: allData.workouts,
           users: allData.users,
-          currentUserEmail: allData.currentUserEmail,
           ref: ref,
         ),
         loading: () => const AGCLoading(),
@@ -41,11 +41,13 @@ class CurrentWorkoutBar extends ConsumerWidget {
 
   Widget _build(
       {required BuildContext context,
-        required List<Workout> workouts, required List<User> users, required String currentUserEmail, required WidgetRef ref}) {
+        required List<Workout> workouts, required List<User> users, required WidgetRef ref}) {
     final workoutCollection = WorkoutCollection(workouts);
     final Workout workout = workoutCollection.getWorkout(workoutID);
     final userCollection = UserCollection(users);
-    final currentUser = userCollection.getUser(currentUserEmail);
+    final currentAuthUser = FirebaseAuth.instance.currentUser;
+    String? currentUserEmail = currentAuthUser?.email;
+    final currentUser = userCollection.getUser(currentUserEmail!);
 
     return Dismissible(
       key: Key(workoutID),

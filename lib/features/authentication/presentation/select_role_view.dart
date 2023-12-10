@@ -1,6 +1,7 @@
 import 'package:coaching_app/features/user/domain/user.dart';
 import 'package:coaching_app/features/user/domain/user_collection.dart';
 import 'package:coaching_app/features/user/presentation/coach/presentation/coach_view.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,7 +24,6 @@ class SelectRoleView extends ConsumerWidget {
     return asyncAllData.when(
         data: (allData) => _build(
               context: context,
-              currentUserEmail: allData.currentUserEmail,
               users: allData.users,
               ref: ref,
             ),
@@ -33,12 +33,13 @@ class SelectRoleView extends ConsumerWidget {
 
   Widget _build({
     required BuildContext context,
-    required String currentUserEmail,
     required WidgetRef ref,
     required List<User> users,
   }) {
     final userCollection = UserCollection(users);
-    User currentUser = userCollection.getUser(currentUserEmail);
+    final currentAuthUser = FirebaseAuth.instance.currentUser;
+    String? currentUserEmail = currentAuthUser?.email;
+    User currentUser = userCollection.getUser(currentUserEmail!);
 
     void assignRoleCoach() {
       String newRole = "coach";

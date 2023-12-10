@@ -1,4 +1,5 @@
 import 'package:coaching_app/features/user/domain/user_collection.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +29,6 @@ class AthleteSettingsView extends ConsumerWidget {
         data: (allData) => _build(
               context: context,
               users: allData.users,
-              currentUserEmail: allData.currentUserEmail,
               ref: ref,
             ),
         loading: () => const AGCLoading(),
@@ -38,11 +38,13 @@ class AthleteSettingsView extends ConsumerWidget {
   Widget _build(
       {required BuildContext context,
       required List<User> users,
-      required WidgetRef ref,
-      required currentUserEmail}) {
+      required WidgetRef ref}) {
+
+    final currentAuthUser = FirebaseAuth.instance.currentUser;
+    String? currentUserEmail = currentAuthUser?.email;
 
     final userCollection = UserCollection(users);
-    User currentUser = userCollection.getUser(currentUserEmail);
+    User currentUser = userCollection.getUser(currentUserEmail!);
 
     void changeName(){
       String newName = _nameFormKey.currentState?.value;
@@ -121,7 +123,8 @@ class AthleteSettingsView extends ConsumerWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(12)),
                   ),
                   child: MaterialButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SignInView()),

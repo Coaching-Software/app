@@ -37,7 +37,7 @@ class SignInView extends ConsumerWidget {
   Widget _build({
     required BuildContext context,
     required List<User> users,
-    required WidgetRef ref,
+    required WidgetRef ref
   }) {
     final userCollection = UserCollection(users);
     return SignInScreen(
@@ -51,6 +51,8 @@ class SignInView extends ConsumerWidget {
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
          User user = userCollection.getUser(state.user!.email!);
+         print("Current user email from sign in:");
+         print(user.email);
           if (!state.user!.emailVerified) {
             Navigator.pushNamed(context, VerifyEmailView.routeName);
           } else {

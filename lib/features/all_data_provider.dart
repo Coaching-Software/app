@@ -19,14 +19,12 @@ class AllData {
       {required this.users,
         required this.workouts,
         required this.surveys,
-        required this.individualresponses,
-      required this.currentUserEmail});
+        required this.individualresponses});
 
   final List<User> users;
   final List<Workout> workouts;
   final List<Survey> surveys;
   final List<Individualresponse> individualresponses;
-  final String currentUserEmail;
 }
 
 @riverpod
@@ -35,13 +33,10 @@ Future<AllData> allData(AllDataRef ref) async {
   final workouts = ref.watch(workoutsProvider.future);
   final surveys = ref.watch(surveysProvider.future);
   final individualresponses = ref.watch(individualresponsesProvider.future);
-
-  final currentUserEmail = ref.watch(currentUserEmailProvider);
   return AllData(
       users: await users,
       workouts: await workouts,
       surveys: await surveys,
       individualresponses: await individualresponses,
-      currentUserEmail: currentUserEmail,
   );
 }
